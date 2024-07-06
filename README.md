@@ -61,10 +61,10 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 ```
 
 # Manejo de Errores
-** Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario. **
+**Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario.**
 
 # Contribución
-** ¡Contribuciones son bienvenidas! Si quieres contribuir a Optimus, sigue estos pasos: **
+**¡Contribuciones son bienvenidas! Si quieres contribuir a Optimus, sigue estos pasos:**
 
 1. Haz un fork del repositorio y clónalo en tu máquina local.
 2. Crea una nueva rama (git checkout -b feature/nueva-funcionalidad).
