@@ -1,24 +1,33 @@
+// index.js
 
+import OptimusFramework from './Optimus';
+import './styles.css'; // Si tienes estilos
 
-/*Example of how use app.js*/
+document.addEventListener('DOMContentLoaded', () => {
+  async function loadTemplate(state) {
+    // Simula un retraso para el ejemplo de carga diferida
+    await new Promise(resolve => setTimeout(resolve, 0));
+    return (
+      '<div>' +
+        '<h1>' + state.message + '</h1>' +
+        '<div>' + new OptimusFramework({
+          el: '#app',
+          state: {
+            message: 'Hola, Mundo optimizado!'
+          },
+          template: loadTemplate
+        }) +
+      '</div>'
+    );
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-    async function loadTemplate(state) {
-      // Simula un retraso para el ejemplo de carga diferida
-      return (
-        '<div>' +
-          '<h1> Hola, ¿Como estas? </h1>' +
-          '<button onclick="window.app.setState({ message: \'¡Hola, JavaScript optimizado!\' })">Cambiar mensaje</button>' +
-        '</div>'
-      );
-    }
-  
-    window.app = new OptimizedFramework({
-      el: '#app', /* BODY */
-      state: {
-        message: 'Hola, Mundo optimizado!' /* YOUR CLASSES*/
-      },
-      template: loadTemplate /* THE MAIN FUNCTION TO START */
-    });
+  const app = new OptimusFramework({
+    el: '#app',
+    state: {
+      message: 'Hola, Mundo optimizado!'
+    },
+    template: loadTemplate
   });
-  
+
+  window.app = app; // Para acceder a la instancia desde la consola
+});

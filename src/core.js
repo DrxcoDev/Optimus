@@ -1,60 +1,30 @@
-/*
-    @ Optimus Framework JavaScript
+// Optimus.js
 
-*/
+import Button from './components/Button';
+import { applyButtonPlugin } from './plugins/ButtonPlugin';
 
-/* 
-
-// DOM Ready Event
-// Load fast
-*/
-
-class OptimizedFramework {
+class OptimusFramework {
   constructor(options) {
-    this.options = options;
-    this.state = {};
-    this.init();
-  }
+    this.el = document.querySelector(options.el);
+    this.state = options.state || {};
+    this.template = options.template;
 
-  init() {
-    try {
-      this.state = this.options.state || {};
-      this.render();
-    } catch (error) {
-      this.handleError(error);
-    }
-  }
-
-  setState(newState) {
-    try {
-      this.state = { ...this.state, ...newState };
-      this.render();
-    } catch (error) {
-      this.handleError(error);
-    }
+    // Aplicar el plugin al componente Button
+    this.Button = applyButtonPlugin(Button);
+    
+    // Inicializar la aplicación
+    this.render();
   }
 
   async render() {
-    try {
-      const root = document.querySelector(this.options.el);
-      const content = await this.options.template(this.state);
-      root.innerHTML = content;
-    } catch (error) {
-      this.handleError(error);
-    }
+    const template = await this.template(this.state);
+    this.el.innerHTML = template;
   }
 
-  handleError(error) {
-    const root = document.querySelector(this.options.el);
-    root.innerHTML = (
-      '<div style="color: red; padding: 10px; border: 2px solid red; background-color: #ffe6e6;">' +
-      '<h2>Se ha producido un error:</h2>' +
-      '<p>' + error.message + '</p>' +
-      '<pre>' + error.stack + '</pre>' +
-      '</div>'
-    );
-    console.error('Error:', error);
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.render();
   }
 }
 
-  
+export default OptimusFramework;
