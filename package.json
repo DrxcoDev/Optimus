@@ -9,5 +9,8 @@
   "keywords": [],
   "repository": "https://github.com/DrxcoDev/Optimus",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
 }

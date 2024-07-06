@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",        /* Indica la versión de JavaScript hacia la cual compilar */
+    "module": "esnext",        /* Tipo de módulo */
+    "strict": true,            /* Habilita todas las opciones de comprobación estricta de TypeScript */
+    "esModuleInterop": true,   /* Habilita interoperabilidad entre CommonJS y ES Modules */
+    "skipLibCheck": true,      /* Evita la comprobación de definiciones de tipos de biblioteca */
+    "forceConsistentCasingInFileNames": true,  /* Asegura la consistencia de mayúsculas y minúsculas en los nombres de archivo */
+    "jsx": "react",            /* Si usas JSX en tu proyecto (puedes cambiar a "preserve" si es necesario) */
+    "declaration": true,       /* Genera archivos .d.ts para soporte de tipo */
+    "outDir": "./dist",        /* Directorio de salida para archivos compilados */
+    "baseUrl": "./",           /* Ruta base para resolver módulos */
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts"             /* Archivos TypeScript que deben ser incluidos en la compilación */
+  ],
+  "exclude": [
+    "node_modules"            /* Archivos y directorios que deben ser excluidos de la compilación */
+  ]
+}
