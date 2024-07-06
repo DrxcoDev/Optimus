@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Simula un retraso para el ejemplo de carga diferida
       return (
         '<div>' +
-          '<h1> Hola Mundo </h1>' +
+          '<h1> Hola, ¿Como estas? </h1>' +
           '<button onclick="window.app.setState({ message: \'¡Hola, JavaScript optimizado!\' })">Cambiar mensaje</button>' +
         '</div>'
       );
