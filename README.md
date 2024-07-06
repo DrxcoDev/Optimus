@@ -15,7 +15,7 @@ Optimus es un framework ligero y optimizado para el desarrollo rápido de aplica
 Puedes instalar Optimus directamente desde npm o incluirlo como un script en tu proyecto.
 
 ```bash
-npm install optimus-framework
+npm install @drxcodev/optimus
 ```
 
 # Uso Básico
