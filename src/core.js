@@ -14,6 +14,9 @@ class OptimusFramework {
     
     // Inicializar la aplicación
     this.render();
+
+    // Global state
+    this.globalState = {};
   }
 
   async render() {
@@ -24,6 +27,15 @@ class OptimusFramework {
   setState(newState) {
     this.state = { ...this.state, ...newState };
     this.render();
+  }
+
+  setGlobalState(newState) {
+    this.globalState = { ...this.globalState, ...newState };
+    this.render();
+  }
+
+  getGlobalState() {
+    return this.globalState;
   }
 }
 

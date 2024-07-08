@@ -1,33 +1,20 @@
-// index.js
-
-import OptimusFramework from './Optimus';
-import './styles.css'; // Si tienes estilos
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   async function loadTemplate(state) {
-    // Simula un retraso para el ejemplo de carga diferida
-    await new Promise(resolve => setTimeout(resolve, 0));
+    // Define la función para generar el contenido dinámico
+    await new Promise(resolve => setTimeout(resolve, 1000));
     return (
       '<div>' +
-        '<h1>' + state.message + '</h1>' +
-        '<div>' + new OptimusFramework({
-          el: '#app',
-          state: {
-            message: 'Hola, Mundo optimizado!'
-          },
-          template: loadTemplate
-        }) +
+        '<h1>Hola Mundo</h1>' +
+        '<button onclick="window.app.setState({ message: \'¡Hola, Optimus!\' })">Cambiar mensaje</button>' +
       '</div>'
     );
   }
 
-  const app = new OptimusFramework({
-    el: '#app',
+  window.app = new OptimusFramework({
+    el: '#app',  // Selector del elemento donde se renderizará la aplicación
     state: {
-      message: 'Hola, Mundo optimizado!'
+      message: '¡Hola, Mundo optimizado!'  // Estado inicial de la aplicación
     },
-    template: loadTemplate
+    template: loadTemplate  // Función para generar el contenido dinámico
   });
-
-  window.app = app; // Para acceder a la instancia desde la consola
 });
