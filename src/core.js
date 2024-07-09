@@ -1,31 +1,47 @@
 class OptimizedFramework {
-  constructor({ el, state, template }) {
-    this.el = document.querySelector(el);
-    this.state = state;
-    this.template = template;
-    this.initialize();
+  constructor(options) {
+    this.options = options;
+    this.state = {};
+    this.init();
   }
 
-  async initialize() {
+  init() {
     try {
-      this.el.innerHTML = await this.template(this.state);
+      this.state = this.options.state || {};
+      this.render();
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  async setState(newState) {
+  setState(newState) {
     try {
       this.state = { ...this.state, ...newState };
-      this.el.innerHTML = await this.template(this.state);
+      this.render();
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  async render() {
+    try {
+      const root = document.querySelector(this.options.el);
+      const content = await this.options.template(this.state);
+      root.innerHTML = content;
     } catch (error) {
       this.handleError(error);
     }
   }
 
   handleError(error) {
-    console.error("Error in OptimizedFramework:", error);
-    this.el.innerHTML = `<div class="error">An error occurred: ${error.message}</div>`;
+    const root = document.querySelector(this.options.el);
+    root.innerHTML = (
+      '<div style="color: red; padding: 10px; border: 2px solid red; background-color: #ffe6e6;">' +
+      '<h2>Se ha producido un error:</h2>' +
+      '<p>' + error.message + '</p>' +
+      '<pre>' + error.stack + '</pre>' +
+      '</div>'
+    );
+    console.error('Error:', error);
   }
 }
-
