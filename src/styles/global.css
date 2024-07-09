@@ -1,12 +1,17 @@
 :root {
     --background--: rgb(20, 20, 20);
-    color: white;
+    --clear--: rgb(255, 255, 255);
 
 }
 
 
 body{
-    color: white;
+    color: var(--clear--);
     background: var(--background--);
     font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: var(--clear--);
 }
