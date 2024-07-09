@@ -42,6 +42,14 @@ class Optimus {
       '<pre>' + error.stack + '</pre>' +
       '</div>'
     );
-    console.error('Error:', error);
+    if (ErrorEvent = "Unchecked runtime.lastError: The message port closed before a response was received."){
+      console.log('0x77Bz');
+      return;
+    }
+    else{
+      console.error('Error:', error);
+    }
+
+    
   }
 }
