@@ -1,3 +1,6 @@
+# Config.yml
+# Local data envioriment
+
 server:
   name: Your server name
   port: 3000
@@ -5,3 +8,6 @@ server:
     enabled: true
     key-store: classpath:keystore.jks
   script: main.js
+  author: Author of server name
+  repository: Your GitHub repository #Example https://github.com/DrxcoDev/Optimus
+  
