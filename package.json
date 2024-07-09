@@ -12,5 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "js-yaml": "^4.1.0"
   }
 }
