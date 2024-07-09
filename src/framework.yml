@@ -1,0 +1,8 @@
+app: Optimus
+version: 1.0.1
+author: Drxco
+nodeversion: 19.9.0
+scripts:
+  main: core.js
+  package: ../package.json
+  local-envioriment: ./server/env.yml
