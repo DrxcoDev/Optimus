@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  window.app = new OptimizedFramework({
+  window.app = new Optimus({
     el: '#app',
     state: {
       message: 'Hola, Mundo optimizado!'
