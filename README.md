@@ -12,6 +12,9 @@ Optimus es un framework ligero y optimizado para el desarrollo rápido de aplica
 - **Manejo de errores integrado**: Muestra mensajes de error claros en la interfaz en caso de fallos.
 - **Facilidad de uso**: Sintaxis simple para la definición de estado y renderización de componentes.
 
+> [!IMPORTANT]\
+> It is currently in the pre-alpha phase which is a project that surely has many flaws. So help me find them.
+
 ## Instalación
 
 Puedes instalar Optimus directamente desde npm o incluirlo como un script en tu proyecto.
