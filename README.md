@@ -30,24 +30,24 @@ Para empezar a usar Optimus en tu proyecto, sigue estos pasos simples:
 ```js
 document.addEventListener("DOMContentLoaded", () => {
   async function loadTemplate(state) {
-    // Define la función para generar el contenido dinámico
+    // Simula un retraso para el ejemplo de carga diferida
     await new Promise(resolve => setTimeout(resolve, 1000));
     return (
       '<div>' +
-        '<h1>Hola Mundo</h1>' +
-        '<button onclick="window.app.setState({ message: \'¡Hola, Optimus!\' })">Cambiar mensaje</button>' +
+        '<h1>Hello Optimus</h1>' +
       '</div>'
     );
   }
 
-  window.app = new Optimus({
-    el: '#app',  // Selector del elemento donde se renderizará la aplicación
+  window.app = new OptimizedFramework({
+    el: '#app',
     state: {
-      message: '¡Hola, Mundo optimizado!'  // Estado inicial de la aplicación
+      message: 'Hola, Mundo optimizado!'
     },
-    template: loadTemplate  // Función para generar el contenido dinámico
+    template: loadTemplate
   });
 });
+
 ```
 
 2. Crea un contenedor en tu HTML donde se renderizará la aplicación:
@@ -64,6 +64,8 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 ```html
 <button onclick="window.app.setState({ message: '¡Nuevo mensaje!' })">Cambiar mensaje</button>
 ```
+> [!WARNING]\
+> It is currently disabled.
 
 # Manejo de Errores
 **Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario.**
