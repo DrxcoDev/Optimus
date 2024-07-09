@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     return (
       '<div>' +
-        '<h1>Hola Mundo</h1>' +
-        '<button onclick="window.app.setState({ message: \'¡Hola, JavaScript optimizado!\' })">Cambiar mensaje</button>' +
+        '<h1>Hello Optimus</h1>' +
       '</div>'
     );
   }
