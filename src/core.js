@@ -1,42 +1,47 @@
-// Optimus.js
-
-import Button from './components/Button';
-import { applyButtonPlugin } from './plugins/ButtonPlugin';
-
-class OptimusFramework {
+class OptimizedFramework {
   constructor(options) {
-    this.el = document.querySelector(options.el);
-    this.state = options.state || {};
-    this.template = options.template;
-
-    // Aplicar el plugin al componente Button
-    this.Button = applyButtonPlugin(Button);
-    
-    // Inicializar la aplicación
-    this.render();
-
-    // Global state
-    this.globalState = {};
+    this.options = options;
+    this.state = {};
+    this.init();
   }
 
-  async render() {
-    const template = await this.template(this.state);
-    this.el.innerHTML = template;
+  init() {
+    try {
+      this.state = this.options.state || {};
+      this.render();
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
+    try {
+      this.state = { ...this.state, ...newState };
+      this.render();
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
-  setGlobalState(newState) {
-    this.globalState = { ...this.globalState, ...newState };
-    this.render();
+  async render() {
+    try {
+      const root = document.querySelector(this.options.el);
+      const content = await this.options.template(this.state);
+      root.innerHTML = content;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
-  getGlobalState() {
-    return this.globalState;
+  handleError(error) {
+    const root = document.querySelector(this.options.el);
+    root.innerHTML = (
+      '<div style="color: red; padding: 10px; border: 2px solid red; background-color: #ffe6e6;">' +
+      '<h2>Se ha producido un error:</h2>' +
+      '<p>' + error.message + '</p>' +
+      '<pre>' + error.stack + '</pre>' +
+      '</div>'
+    );
+    console.error('Error:', error);
   }
 }
-
-export default OptimusFramework;
