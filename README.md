@@ -79,9 +79,9 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
     ```yaml
     local: automatic # !: EU, USA, LATAM, ASIA, EUASIA, AFRICA, OCE
     ```
-  
-  > [!WARNING]\
-  > Actualmente esta deshabilitado porque sigue en desarrollo, pronto estará
+
+> [!WARNING]
+> Actualmente esta deshabilitado porque sigue en desarrollo, pronto estará
 
 # Ignora los siguientes apartados
 
