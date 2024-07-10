@@ -70,6 +70,19 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 # Manejo de Errores
 **Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario.**
 
+# Opciones
+
+- **Estado de la ubicación local por continente:**
+  Puedes editar en que continente puedes lanzar el servidor para ver como de diferentes maneras puedes ver el rendimiento de la web
+  - Ves a `test/propieties/user.yaml`
+  - En `user.yaml`
+    ```yaml
+    local: automatic # !: EU, USA, LATAM, ASIA, EUASIA, AFRICA, OCE
+    ```
+  
+  > [!WARNING]\
+  > Actualmente esta deshabilitado porque sigue en desarrollo, pronto estará
+
 # Ignora los siguientes apartados
 
 _Ignora los siguientes apartados, algunos están en prueba y no son relevantes_
