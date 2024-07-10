@@ -70,6 +70,12 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 # Manejo de Errores
 **Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario.**
 
+# Ignora los siguientes apartados
+
+_Ignora los siguientes apartados, algunos están en prueba y no son relevantes_
+
+| [lab/](https://github.com/DrxcoDev/Optimus/tree/main/lab) |
+
 # Contribución
 **¡Contribuciones son bienvenidas! Si quieres contribuir a Optimus, sigue estos pasos:**
 
