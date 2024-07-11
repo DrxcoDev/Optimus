@@ -1,6 +1,7 @@
-
+// import { getCurrentDateTime } from "./plugins/plugins";
 
 class Optimus {
+  
   constructor(options) {
     this.options = options;
     this.state = {};
@@ -53,5 +54,16 @@ class Optimus {
     }
 
     
+  }
+
+  updateTitle(newTitle) {
+    document.title = newTitle;
+  }
+
+  plugins(name) {
+    if (name = Date){
+      const dateTime = getCurrentDateTime;
+      console.log(`Año: ${dateTime.year}`);
+    }
   }
 }

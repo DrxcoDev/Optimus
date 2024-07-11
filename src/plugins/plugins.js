@@ -11,7 +11,7 @@ Every Plugins of Optimus
 const getCurrentDateTime = require('./lib/Data');
 
 // Llamar a la función y usar los resultados
-const dateTime = getCurrentDateTime();
+
 
 // console.log(`Año: ${dateTime.year}`);
 // console.log(`Mes: ${dateTime.month}`);
