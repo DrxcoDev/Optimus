@@ -8,7 +8,7 @@
   fs = require('fs');
 
   // Compilar el archivo Pug a HTML
-  html = pug.renderFile('./index.pug');
+  html = pug.renderFile('./debug/index.pug');
 
   // Escribir el resultado en un archivo HTML
   fs.writeFileSync('index.html', html);
