@@ -3,3 +3,6 @@ node_modules/
 .vscode/
 publish/
 /.gitignore
+lab/
+src/server/
+src/plugins/
