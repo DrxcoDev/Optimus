@@ -4,7 +4,7 @@
 
 Optimus es un framework ligero y optimizado para el desarrollo rápido de aplicaciones web. Está diseñado para mejorar el rendimiento de las aplicaciones al cargar elementos rápidamente y manejar errores de forma efectiva en el lado del cliente.
 
-![Optimus Logo](https://example.com/optimus-logo.png)
+![Optimus Logo]("https://github.com/DrxcoDev/Optimus/raw/main/doc/logo.png")
 
 ## Características
 
