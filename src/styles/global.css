@@ -2,6 +2,14 @@
     --background--: rgb(20, 20, 20);
     --clear--: rgb(255, 255, 255);
 
+    --gray1--: rgb(72, 72, 72);
+    --rounded-lg--: 25px;
+    --rounded-md--: 15px;
+    --rounded-sm--: 10px;
+    --rounded-xl--: 30px;
+    --rounded-full--: 50%;
+
+
 }
 
 
@@ -14,4 +22,55 @@ body{
 a{
     text-decoration: none;
     color: var(--clear--);
+}
+
+/* Border Rounded  */
+
+.rounded-lg{
+    border-radius: var(--rounded-lg--);
+}
+.rounded-md{
+    border-radius: var(--rounded-md--);
+}
+.rounded-sm{
+    border-radius: var(--rounded-sm--);
+}
+.rounded-xl{
+    border-radius: var(--rounded-xl--);
+}
+.rounded-full{
+    border-radius: var(--rounded-full--);
+}
+
+/* Paddings */
+
+.p-1{
+    padding: 0.5rem;
+}
+.p-2{
+    padding: 1rem;
+}
+
+/* Text Color  */
+
+.text-light{
+    color: var(--clear--);
+}
+
+.border-null {
+    border: none;
+}
+
+/* Background Color  */
+
+.bg-light{
+    background: var(--clear--);
+}
+
+.bg-dark{
+    background: var(--background--);
+}
+
+.bg-gray{
+    background: var(--gray1--);
 }
