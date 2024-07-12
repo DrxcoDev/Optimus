@@ -160,6 +160,18 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 > [!WARNING]
 > Puede no ser compatible con algunos navegadores.
 
+
+# API
+
+**Optimus cuenta con su propia API la que tiene muchas opciones, puedes contribuir añadiendo la tuya añadiendo su función**
+
+Las actuales API's
+```
+
+–> updateTitle : window.app.updateTitle(\'Optimus with you\')
+
+```
+
 # Ignora los siguientes apartados
 
 _Ignora los siguientes apartados, algunos están en prueba y no son relevantes_
