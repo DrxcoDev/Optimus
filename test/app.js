@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
-        '<button onclick="window.app.DateTime(\'Local\')">Actualizar Título</button>' +
+        '<button class="rounded-sm border-null text-light bg-gray p-1" onclick="window.app.DateTime(\'Local\')">Actualizar Título</button>' +
         '<p> Fecha en año ' + state.year + '</p>' +
       '</div>' 
     );

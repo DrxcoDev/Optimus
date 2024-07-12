@@ -23,6 +23,11 @@ class Optimus
       root = document.querySelector(@options.el)
       content = await @options.template(@state)
       root.innerHTML = content
+
+      if !@state.title
+        @updateTitle 'Optimus'
+      if @state.title
+        @updateTitle @state.title
     catch error
       @handleError(error)
 
@@ -40,3 +45,6 @@ class Optimus
       return
     else
       console.error 'Error:', error
+
+  updateTitle: (newTitle) ->
+    document.title = newTitle
