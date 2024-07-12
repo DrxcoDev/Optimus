@@ -8,16 +8,23 @@ document.addEventListener("DOMContentLoaded", () => {
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
-        '<button onclick="window.app.updateTitle(\'Optimus with you\')">Actualizar Título</button>' +
+        '<button onclick="window.app.DateTime(\'Local\')">Actualizar Título</button>' +
+        '<p> Fecha en año ' + state.year + '</p>' +
       '</div>' 
     );
   }
 
+  const currentYear = new Date().getFullYear();
+
   window.app = new Optimus({
     el: '#app',
     state: {
-      message: 'Hola, Mundo optimizado!'
+      message: 'Hola, Mundo optimizado!',
+      title: 'Hello, Optimus',
+      year: currentYear
     },
     template: loadTemplate
   });
+
+  window.updateTitle('Optimus está aquí');
 });

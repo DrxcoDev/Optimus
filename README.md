@@ -168,7 +168,7 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 Las actuales API's
 ```
 
-–> updateTitle : window.app.updateTitle(\'Optimus with you\')
+–> updateTitle : window.app.updateTitle(\'Optimus with you\') // Cambia el título de la pagina
 
 ```
 

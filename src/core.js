@@ -1,7 +1,4 @@
-// import { getCurrentDateTime } from "./plugins/plugins";
-
 class Optimus {
-  
   constructor(options) {
     this.options = options;
     this.state = {};
@@ -31,6 +28,16 @@ class Optimus {
       const root = document.querySelector(this.options.el);
       const content = await this.options.template(this.state);
       root.innerHTML = content;
+      // Actualizar el título al cargar la página
+      // this.updateTitle(this.state.title);
+      if (!this.state.title){
+        this.updateTitle('Optimus');
+      }
+      if (this.state.title){
+        this.updateTitle(this.state.title);
+      }
+
+
     } catch (error) {
       this.handleError(error);
     }
@@ -45,25 +52,12 @@ class Optimus {
       '<pre>' + error.stack + '</pre>' +
       '</div>'
     );
-    if (ErrorEvent = "Unchecked runtime.lastError: The message port closed before a response was received."){
-      console.log('0x77Bz');
-      return;
-    }
-    else{
-      console.error('Error:', error);
-    }
-
-    
+    console.error('Error:', error);
   }
 
   updateTitle(newTitle) {
     document.title = newTitle;
   }
 
-  plugins(name) {
-    if (name = Date){
-      const dateTime = getCurrentDateTime;
-      console.log(`Año: ${dateTime.year}`);
-    }
-  }
+  
 }
