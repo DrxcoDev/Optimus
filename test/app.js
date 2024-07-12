@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<div>' +
         '<h1>' + state.message + '</h1>' +
         '<button onclick="window.app.updateTitle(\'Optimus with you\')">Actualizar Título</button>' +
-      '</div>'
+      '</div>' 
     );
   }
 
