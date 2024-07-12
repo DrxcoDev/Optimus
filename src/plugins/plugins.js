@@ -8,8 +8,7 @@ Every Plugins of Optimus
 // main.js
 
 // Importar la función desde dateTime.js
-const getCurrentDateTime = require('./lib/Data');
-
+export const getCurrentDateTime = require('./lib/Data');
 // Llamar a la función y usar los resultados
 
 
