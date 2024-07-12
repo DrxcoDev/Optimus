@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return (
       '<div>' +
         '<h1>Hello Optimus</h1>' +
+        //'<h1> + state.message + </h1>'
+        /* Utilizalo para imprimir el mensaje del state global */
       '</div>'
     );
   }
