@@ -1,10 +1,28 @@
 # Optimus
 
-![Spain](https://github.com/hampusborgos/country-flags/blob/main/png250px/es.png)
+<div align="center" style="border-radius:25px;">
+  <img align="center" src="https://github.com/DrxcoDev/Optimus/raw/main/doc/logo.png" alt="Optimus Framework Logo" width="200" height="180">
+</div>
+
+<div align="center">
+  </br>
+  Works with:
+</div>
+
+<div align="center">
+   <img align="center" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+   <img align="center" src="https://img.shields.io/badge/Pug-FFF?style=for-the-badge&logo=pug&logoColor=A86454" alt="Pug">
+   <img align="center" src="https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white" alt="NPM">
+   <img align="center" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JS">
+   <img align="center" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
+</div>
+
+#
 
 Optimus es un framework ligero y optimizado para el desarrollo rápido de aplicaciones web. Está diseñado para mejorar el rendimiento de las aplicaciones al cargar elementos rápidamente y manejar errores de forma efectiva en el lado del cliente.
 
-![Optimus Logo](https://github.com/DrxcoDev/Optimus/raw/main/doc/logo.png)
+
+<img src="https://github.com/hampusborgos/country-flags/blob/main/png250px/es.png?width=200&height=200" alt="Optimus Framework Logo" width="150" height="100">
 
 ## Características
 
