@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
-        '<button class="rounded-sm border-null text-light bg-gray p-1 w-[20px]" onclick="window.app.DateTime(\'Local\')">Actualizar Título</button>' +
+        '<button class="rounded-sm border-null text-light bg-gray p-1 w-[20px]" onclick="window.app.modeColor(\'Dark\')">Actualizar Título</button>' +
         '<p> Fecha en año ' + state.year + '</p>' +
       '</div>' 
     );
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     state: {
       message: 'Hola, Mundo optimizado!',
       title: 'Hello, Optimus',
-      year: currentYear
+      year: currentYear,
+      darkMode: true
     },
     template: loadTemplate
   });

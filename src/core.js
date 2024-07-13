@@ -36,7 +36,7 @@ class Optimus {
       if (this.state.title){
         this.updateTitle(this.state.title);
       }
-
+      this.applyTheme();
 
     } catch (error) {
       this.handleError(error);
@@ -59,5 +59,21 @@ class Optimus {
     document.title = newTitle;
   }
 
+  toggleTheme() {
+    this.setState({ darkMode: !this.state.darkMode });
+  }
+
+  applyTheme() {
+    const root = document.querySelector(this.options.el);
+    if (this.state.darkMode) {
+      root.style.backgroundColor = '#333';
+      root.style.color = '#fff';
+      root.style.padding = '10px';
+    } else {
+      root.style.padding = '10px';
+      root.style.backgroundColor = '#fff';
+      root.style.color = '#000';
+    }
+  }
   
 }

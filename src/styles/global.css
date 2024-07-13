@@ -1,3 +1,11 @@
+/* GLOBAL STYLES OF OPTIMUS  */
+/* MIT Copyright 2024 */
+
+
+/* FONT IMPORT  */
+
+
+/* MAIN  */
 :root {
     --background--: rgb(20, 20, 20);
     --clear--: rgb(255, 255, 255);
@@ -16,8 +24,13 @@
 
 body{
     color: var(--clear--);
-    background: var(--background--);
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    margin-top: -21px;
+}
+
+#a{
+    padding: 20px;
 }
 
 a{
@@ -78,4 +91,9 @@ a{
 
 .bg-yellow{
     background: var(--yellow--);
+}
+
+/* Width & Height  */
+.w{
+    width: 0px;
 }
