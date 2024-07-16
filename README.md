@@ -19,7 +19,7 @@
 
 #
 
-Optimus es un framework ligero y optimizado para el desarrollo rápido de aplicaciones web. Está diseñado para mejorar el rendimiento de las aplicaciones al cargar elementos rápidamente y manejar errores de forma efectiva en el lado del cliente.
+Optimus es un framework ligero y optimizado para el desarrollo rápido de aplicaciones web. Está diseñado para mejorar el rendimiento de las aplicaciones al cargar elementos rápidamente y manejar errores de forma efectiva en el lado del cliente. **Sin animo de lucro**
 
 **Optimus** también contiene su propia libreria de css para todos los usuarios. 
 Actualemnete esta en desarrollo y se habilitará como estable el 20 de julio.
