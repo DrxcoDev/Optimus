@@ -90,6 +90,16 @@ Este ejemplo muestra cómo cambiar dinámicamente el mensaje en la aplicación u
 # Manejo de Errores
 **Optimus maneja automáticamente los errores y los muestra en la interfaz de usuario.**
 
+# Wiki State
+**Esta sección es donde estará toda la documentacion de cada state que vayamos creando**
+```js
+      message: 'Hola, Mundo optimizado!', //  Mensaje como variable = 'Tu mensaje'
+      title: 'Hello, Optimus',            //  Titulo de la ventana = 'Tu titulo'
+      year: currentYear,                  //  Activa esta funcion si quieres que aparezca el año = currentYear
+      darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
+      clickMessage: 'Click Me'            //  Mensaje del boton antes de hacer un evento = 'Click Me'
+```
+
 # Opciones
 
 - **Estado de la ubicación local por continente:**
