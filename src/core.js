@@ -2,6 +2,7 @@ class Optimus {
   constructor(options) {
     this.options = options;
     this.state = {};
+    this.events = {}; // Objeto para almacenar los eventos registrados
     this.init();
   }
 
@@ -37,7 +38,7 @@ class Optimus {
         this.updateTitle(this.state.title);
       }
       this.applyTheme();
-
+      this.bindEvents(); // Ligar eventos después de renderizar el contenido
     } catch (error) {
       this.handleError(error);
     }
@@ -74,6 +75,43 @@ class Optimus {
       root.style.backgroundColor = '#fff';
       root.style.color = '#000';
     }
+  }
+
+  // Método para registrar eventos personalizados
+  on(eventName, handler) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
+    }
+    this.events[eventName].push(handler);
+  }
+
+  // Método para desregistrar eventos personalizados
+  off(eventName, handler) {
+    if (this.events[eventName]) {
+      this.events[eventName] = this.events[eventName].filter(fn => fn !== handler);
+    }
+  }
+
+  // Método para disparar eventos personalizados
+  emit(eventName, data) {
+    if (this.events[eventName]) {
+      this.events[eventName].forEach(handler => {
+        handler(data);
+      });
+    }
+  }
+
+  // Método para ligar eventos a elementos del DOM
+  bindEvents() {
+    const root = document.querySelector(this.options.el);
+    Object.keys(this.events).forEach(eventName => {
+      root.querySelectorAll(`[data-on-${eventName}]`).forEach(element => {
+        const handlerName = element.getAttribute(`data-on-${eventName}`);
+        element.addEventListener(eventName, () => {
+          this.emit(eventName, this.state[handlerName]);
+        });
+      });
+    });
   }
   
 }
