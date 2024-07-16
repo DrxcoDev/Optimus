@@ -2,6 +2,7 @@ class Optimus
   constructor: (options) ->
     @options = options
     @state = {}
+    @events = {}
     @init()
 
   init: ->
@@ -13,21 +14,24 @@ class Optimus
 
   setState: (newState) ->
     try
-      @state = Object.assign({}, @state, newState)
+      @state = { ...@state, ...newState }
       @render()
     catch error
       @handleError(error)
 
-  render: ->
+  render: async () ->
     try
       root = document.querySelector(@options.el)
       content = await @options.template(@state)
       root.innerHTML = content
-
+      
       if !@state.title
-        @updateTitle 'Optimus'
-      if @state.title
-        @updateTitle @state.title
+        @updateTitle('Optimus')
+      else
+        @updateTitle(@state.title)
+      
+      @applyTheme()
+      @bindEvents()
     catch error
       @handleError(error)
 
@@ -40,11 +44,48 @@ class Optimus
         <pre>#{error.stack}</pre>
       </div>
     """
-    if error.message == "Unchecked runtime.lastError: The message port closed before a response was received."
-      console.log('0x77Bz')
-      return
-    else
-      console.error 'Error:', error
+    console.error('Error:', error)
 
   updateTitle: (newTitle) ->
     document.title = newTitle
+
+  toggleTheme: ->
+    @setState(darkMode: !@state.darkMode)
+
+  applyTheme: ->
+    root = document.querySelector(@options.el)
+    if @state.darkMode
+      root.style.backgroundColor = '#333'
+      root.style.color = '#fff'
+      root.style.padding = '10px'
+    else
+      root.style.padding = '10px'
+      root.style.backgroundColor = '#fff'
+      root.style.color = '#000'
+
+  on: (eventName, handler) ->
+    @events[eventName] ?= []
+    @events[eventName].push(handler)
+
+  off: (eventName, handler) ->
+    if @events[eventName]
+      @events[eventName] = @events[eventName].filter((fn) -> fn isnt handler)
+
+  emit: (eventName, data) ->
+    if @events[eventName]
+      @events[eventName].forEach((handler) ->
+        handler(data)
+      )
+
+  bindEvents: ->
+    root = document.querySelector(@options.el)
+    Object.keys(@events).forEach((eventName) ->
+      root.querySelectorAll("[data-on-#{eventName}]").forEach((element) ->
+        handlerName = element.getAttribute("data-on-#{eventName}")
+        element.addEventListener(eventName, () ->
+          @emit(eventName, @state[handlerName])
+        )
+      )
+    )
+
+# export default Optimus
