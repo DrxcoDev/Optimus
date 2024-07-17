@@ -1,13 +1,16 @@
+
 class Optimus {
   constructor(options) {
     this.options = options;
     this.state = {};
     this.events = {}; // Objeto para almacenar los eventos registrados
+    this.prevState = {};
     this.init();
   }
 
   init() {
     try {
+      this.prevState = { ...this.state };
       this.state = this.options.state || {};
       this.render();
     } catch (error) {
@@ -42,6 +45,55 @@ class Optimus {
     } catch (error) {
       this.handleError(error);
     }
+  }
+
+  /**
+   * 
+   * @returns Funcion async para cada vez que se hace un cambio se actualiza automaticamente
+   * Esta funcionalidad saldrá en el paquete de NPM para la version estable de Optimus.
+   * No hay fecha oficial para dicha cosa pero el equipo de programación está trabajando exhaustivamente
+   * para hacerlo lo antes posible.
+   */
+  async update() {
+    try {
+      if (JSON.stringify(this.prevState) === JSON.stringify(this.state)) {
+        return; // No hay cambios en el estado, no se necesita actualizar el DOM
+      }
+
+      const root = document.querySelector(this.options.el);
+      const content = await this.options.template(this.state);
+
+      // Solo actualizar los nodos cambiados
+      this.updateDOM(root, content);
+
+      // Actualizar el título si ha cambiado
+      if (this.prevState.title !== this.state.title) {
+        this.updateTitle(this.state.title);
+      }
+
+      this.applyTheme();
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
+
+  updateDOM(root, newContent) {
+    const newRoot = document.createElement('div');
+    newRoot.innerHTML = newContent;
+
+    const updateElement = (oldEl, newEl) => {
+      if (oldEl && newEl) {
+        if (oldEl.tagName !== newEl.tagName || oldEl.innerHTML !== newEl.innerHTML) {
+          oldEl.replaceWith(newEl);
+        } else {
+          for (let i = 0; i < oldEl.children.length; i++) {
+            updateElement(oldEl.children[i], newEl.children[i]);
+          }
+        }
+      }
+    };
+
+    updateElement(root, newRoot.firstChild);
   }
 
   handleError(error) {
