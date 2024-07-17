@@ -39,6 +39,7 @@ class Optimus {
       }
       this.applyTheme();
       this.bindEvents(); // Ligar eventos después de renderizar el contenido
+      this.ajax();
     } catch (error) {
       this.handleError(error);
     }
@@ -113,7 +114,28 @@ class Optimus {
       });
     });
   }
-  
-}
 
+  /* async ajax(config = {}) {
+    const { url, method = 'GET', headers = {}, body = null } = config;
+    if (!url) {
+      throw new Error('URL is required for AJAX request');
+    }
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : null
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      this.handleError(error);
+      throw error; // Re-throw para que el usuario pueda manejarlo si lo desea
+    }
+  }
+  */
+}
 // export default Optimus;
