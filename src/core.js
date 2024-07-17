@@ -39,7 +39,6 @@ class Optimus {
       }
       this.applyTheme();
       this.bindEvents(); // Ligar eventos después de renderizar el contenido
-      this.ajax();
     } catch (error) {
       this.handleError(error);
     }
@@ -137,5 +136,53 @@ class Optimus {
     }
   }
   */
+
+  /**
+   * Validacion de fromulario dentro de Optimus
+   */
+
+  validarUsuario(usuario) {
+    const { minUsernameLength, minPasswordLength, minEmailLength } = this.state;
+    const errores = {};
+
+    if (!usuario.username) {
+      errores.username = 'El nombre es obligatorio';
+    } else if (usuario.username.length < minUsernameLength) {
+      errores.username = `El nombre de usuario debe tener al menos ${minUsernameLength} caracteres`;
+    }
+    if (!usuario.password) {
+      errores.password = 'La contraseña es obligatoria';
+    } else if (usuario.password.length < minPasswordLength) {
+      errores.password = `La contraseña debe tener al menos ${minPasswordLength} caracteres`;
+    }
+    if (!usuario.email) {
+      errores.email = 'El email es obligatorio';
+    } else if (usuario.email.length < minEmailLength || !/\S+@\S+\.\S+/.test(usuario.email)) {
+      errores.email = `El correo es incorrecto`;
+    }
+
+    return errores;
+
+  }
+
+  handleSubmitRegistro(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const usuario = {
+      username: formData.get('username'),
+      password: formData.get('password'),
+      email: formData.get('email'),
+
+    };
+
+    const errores = this.validarUsuario(usuario);
+    if (Object.keys(errore).length === 0){
+      console.log(`Usuario perfectamente registrado: ${usuario}`);
+    } else {
+      console.log("Error en la validación")
+    }
+    
+  }
+
 }
 // export default Optimus;
