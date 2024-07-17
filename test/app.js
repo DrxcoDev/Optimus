@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Simula un retraso para el ejemplo de carga diferida
     await new Promise(resolve => setTimeout(resolve, 1000));
+
+
+
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
@@ -50,4 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
    * Esta función permite el state:title = "..." 
    */
   window.updateTitle('Optimus está aquí');
-});
+
+  
+})
