@@ -13,9 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
-        '<button class="rounded-sm border-null text-light bg-gray p-1 w-[20px]" onclick="window.app.modeColor(\'Dark\')">Actualizar Título</button>' +
+        '<button class="rounded-sm border-null text-light bg-gray p-1 w-[20px]" >Actualizar Título</button>' +
         '<p> Fecha en año ' + state.year + '</p>' +
         '<button data-on-click="clickMessage">' + state.clickMessage + '</button>' +
+
+
+        // Validacion de un formulario de forma Optimizada
+        '<div>' +
+            '<form id="registro-form">' +
+            '<label for="username">Nombre de usuario:</label><br>' +
+            `<input type="text" id="username" name="username" minlength="${state.minUsernameLength}" required><br>` +
+            '<label for="password">Contraseña:</label><br>' +
+            `<input type="password" id="password" name="password" minlength="${state.minPasswordLength}" required><br>` +
+            '<label for="email">Correo electrónico:</label><br>' +
+            `<input type="email" id="email" name="email" minlength="${state.minEmailLength}" required><br>` +
+            '<button type="submit">Registrarse</button>' +
+            '</form>' +
+        '</div>' +
       '</div>' 
     );
   }
@@ -29,7 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
       title: 'Hello, Optimus',            //  Titulo de la ventana = 'Tu titulo'
       year: currentYear,                  //  Activa esta funcion si quieres que aparezca el año = currentYear
       darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
-      clickMessage: 'Click Me'            //  Mensaje del boton antes de hacer un evento = 'Click Me'
+      clickMessage: 'Click Me',           //  Mensaje del boton antes de hacer un evento = 'Click Me'
+
+      /**
+       * Para la vadilación del usuario, minimo de caracteres.
+       */
+
+      minUsernameLength: '3',
+      minPasswordLength: '6',
+      minEmailLength: '5',
     },
     template: loadTemplate
   });
