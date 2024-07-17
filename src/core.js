@@ -157,7 +157,7 @@ class Optimus {
     }
     if (!usuario.email) {
       errores.email = 'El email es obligatorio';
-    } else if (usuario.email.length < minEmailLength || !/\S+@\S+\.\S+/.test(usuario.email)) {
+    } else if (usuario.email.length < minEmailLength || !/\S+@\S+\.\S+/.test(usuario.email)) { //De esta manera el usuario deberá de poner el "@" si o si
       errores.email = `El correo es incorrecto`;
     }
 

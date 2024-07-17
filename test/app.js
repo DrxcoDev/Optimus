@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
        * Para la vadilación del usuario, minimo de caracteres.
        */
 
-      minUsernameLength: '3',
-      minPasswordLength: '6',
-      minEmailLength: '5',
+      minUsernameLength: '3',            // Minimo de digitos en el apartado de "Username" del formulario = ''
+      minPasswordLength: '6',            // Minimo de digitos en el apartado de "Password" del formulario = ''
+      minEmailLength: '5',               // Minimo de digitos en el correo = ''. Ya de por sí esta configurado para que sea obligatorio el @
     },
     template: loadTemplate
   });
