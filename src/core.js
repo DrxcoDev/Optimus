@@ -176,7 +176,7 @@ class Optimus {
     };
 
     const errores = this.validarUsuario(usuario);
-    if (Object.keys(errore).length === 0){
+    if (Object.keys(errores).length === 0){
       console.log(`Usuario perfectamente registrado: ${usuario}`);
     } else {
       console.log("Error en la validación")
