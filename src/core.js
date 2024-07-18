@@ -5,6 +5,8 @@ class Optimus {
     this.state = {};
     this.events = {}; // Objeto para almacenar los eventos registrados
     this.prevState = {};
+    this.hooks = [];
+    this.hookIndex = 0;
     this.init();
   }
 
@@ -18,6 +20,20 @@ class Optimus {
     }
   }
 
+  useState(initialValue) {
+    const hookIndex = this.hookIndex++;
+    if (this.hooks[hookIndex] === undefined) {
+      this.hooks[hookIndex] = initialValue;
+    }
+
+    const setState = (newState) => {
+      this.hooks[hookIndex] = newState;
+      this.render();
+    };
+
+    return [this.hooks[hookIndex], setState];
+  }
+
   setState(newState) {
     try {
       this.state = { ...this.state, ...newState };
@@ -25,6 +41,32 @@ class Optimus {
     } catch (error) {
       this.handleError(error);
     }
+  }
+
+  useEffect(callback, deps) {
+    const hookIndex = this.hookIndex++;
+    const hasNoDeps = !deps;
+    const hasChangedDeps = this.prevDeps
+      ? !deps.every((dep, i) => dep === this.prevDeps[hookIndex][i])
+      : true;
+
+    if (hasNoDeps || hasChangedDeps) {
+      callback();
+      this.prevDeps[hookIndex] = deps;
+    }
+  }
+
+  useReducer(reducer, initialState) {
+    const [state, setState] = this.useState(initialState);
+    const dispatch = (action) => {
+      const newState = reducer(state, action);
+      setState(newState);
+    };
+    return [state, dispatch];
+  }
+
+  resetHooks() {
+    this.hookIndex = 0;
   }
 
   async render() {
