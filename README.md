@@ -28,6 +28,10 @@ Actualemnete esta en desarrollo y se habilitará como estable el 20 de julio.
 
 <img src="https://github.com/hampusborgos/country-flags/blob/main/png250px/es.png?width=200&height=200" alt="Optimus Framework Logo" width="150" height="100">
 
+<div style="border-radius:25px;">
+  <img align="center" src="https://github.com/DrxcoDev/Optimus/blob/main/doc/Untitled.png?raw=true" alt="Optimus example" width="1440" height="700">
+</div>
+
 ## Características
 
 - **Optimización de rendimiento**: Carga rápida de elementos en la interfaz de usuario.
