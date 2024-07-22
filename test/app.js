@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
 
-
     return (
       '<div>' +
         '<h1>' + state.message + '</h1>' +
@@ -30,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             '<button type="submit">Registrarse</button>' +
             '</form>' +
         '</div>' +
+
       '</div>' 
     );
   }

@@ -1,12 +1,12 @@
-
 class Optimus {
   constructor(options) {
     this.options = options;
     this.state = {};
-    this.events = {}; // Objeto para almacenar los eventos registrados
+    this.events = {};
     this.prevState = {};
     this.hooks = [];
     this.hookIndex = 0;
+    this.oldVTree = null;
     this.init();
   }
 
@@ -74,41 +74,35 @@ class Optimus {
       const root = document.querySelector(this.options.el);
       const content = await this.options.template(this.state);
       root.innerHTML = content;
-      // Actualizar el título al cargar la página
-      // this.updateTitle(this.state.title);
-      if (!this.state.title){
+      if (!this.state.title) {
         this.updateTitle('Optimus');
-      }
-      if (this.state.title){
+      } else {
         this.updateTitle(this.state.title);
       }
       this.applyTheme();
-      this.bindEvents(); // Ligar eventos después de renderizar el contenido
+      this.bindEvents();
+      this.proof();
+      this.getZone();
     } catch (error) {
       this.handleError(error);
     }
   }
 
-  /**
-   * 
-   * @returns Funcion async para cada vez que se hace un cambio se actualiza automaticamente
-   * Esta funcionalidad saldrá en el paquete de NPM para la version estable de Optimus.
-   * No hay fecha oficial para dicha cosa pero el equipo de programación está trabajando exhaustivamente
-   * para hacerlo lo antes posible.
-   */
+  proof() {
+    console.log("Hello World")
+  }
+
   async update() {
     try {
       if (JSON.stringify(this.prevState) === JSON.stringify(this.state)) {
-        return; // No hay cambios en el estado, no se necesita actualizar el DOM
+        return;
       }
 
       const root = document.querySelector(this.options.el);
       const content = await this.options.template(this.state);
 
-      // Solo actualizar los nodos cambiados
       this.updateDOM(root, content);
 
-      // Actualizar el título si ha cambiado
       if (this.prevState.title !== this.state.title) {
         this.updateTitle(this.state.title);
       }
@@ -151,7 +145,11 @@ class Optimus {
   }
 
   updateTitle(newTitle) {
-    document.title = newTitle;
+    try {
+      document.title = newTitle;
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   toggleTheme() {
@@ -159,19 +157,23 @@ class Optimus {
   }
 
   applyTheme() {
-    const root = document.querySelector(this.options.el);
-    if (this.state.darkMode) {
-      root.style.backgroundColor = '#333';
-      root.style.color = '#fff';
-      root.style.padding = '10px';
-    } else {
-      root.style.padding = '10px';
-      root.style.backgroundColor = '#fff';
-      root.style.color = '#000';
+    try {
+      const root = document.querySelector(this.options.el);
+      if (this.state.darkMode) {
+        root.style.backgroundColor = '#333';
+        root.style.color = '#fff';
+        root.style.padding = '10px';
+      } else {
+        root.style.padding = '10px';
+        root.style.backgroundColor = '#fff';
+        root.style.color = '#000';
+      }
+    } catch (error) {
+      this.handleError(error);
     }
+    
   }
 
-  // Método para registrar eventos personalizados
   on(eventName, handler) {
     if (!this.events[eventName]) {
       this.events[eventName] = [];
@@ -179,14 +181,12 @@ class Optimus {
     this.events[eventName].push(handler);
   }
 
-  // Método para desregistrar eventos personalizados
   off(eventName, handler) {
     if (this.events[eventName]) {
       this.events[eventName] = this.events[eventName].filter(fn => fn !== handler);
     }
   }
 
-  // Método para disparar eventos personalizados
   emit(eventName, data) {
     if (this.events[eventName]) {
       this.events[eventName].forEach(handler => {
@@ -195,7 +195,6 @@ class Optimus {
     }
   }
 
-  // Método para ligar eventos a elementos del DOM
   bindEvents() {
     const root = document.querySelector(this.options.el);
     Object.keys(this.events).forEach(eventName => {
@@ -206,6 +205,60 @@ class Optimus {
         });
       });
     });
+  }
+
+  validarUsuario(usuario) {
+    const { minUsernameLength, minPasswordLength, minEmailLength } = this.state;
+    const errores = {};
+
+    if (!usuario.username) {
+      errores.username = 'El nombre es obligatorio';
+    } else if (usuario.username.length < minUsernameLength) {
+      errores.username = `El nombre de usuario debe tener al menos ${minUsernameLength} caracteres`;
+    }
+    if (!usuario.password) {
+      errores.password = 'La contraseña es obligatoria';
+    } else if (usuario.password.length < minPasswordLength) {
+      errores.password = `La contraseña debe tener al menos ${minPasswordLength} caracteres`;
+    }
+    if (!usuario.email) {
+      errores.email = 'El email es obligatorio';
+    } else if (usuario.email.length < minEmailLength || !/\S+@\S+\.\S+/.test(usuario.email)) {
+      errores.email = `El correo es incorrecto`;
+    }
+
+    return errores;
+  }
+
+  handleSubmitRegistro(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const usuario = {
+      username: formData.get('username'),
+      password: formData.get('password'),
+      email: formData.get('email'),
+    };
+
+    const errores = this.validarUsuario(usuario);
+    if (Object.keys(errores).length === 0) {
+      console.log(`Usuario perfectamente registrado: ${usuario}`);
+    } else {
+      console.log("Error en la validación")
+    }
+  }
+
+  /**
+   * Pedimos la IP para guardarla en la Base de Datos.
+   */
+  getZone() {
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        console.log('IP pública:', data.ip);
+      })
+      .catch(error => {
+        console.error('Error al obtener la IP:', error);
+      });
   }
 
   /* async ajax(config = {}) {
@@ -231,52 +284,6 @@ class Optimus {
   }
   */
 
-  /**
-   * Validacion de fromulario dentro de Optimus
-   */
-
-  validarUsuario(usuario) {
-    const { minUsernameLength, minPasswordLength, minEmailLength } = this.state;
-    const errores = {};
-
-    if (!usuario.username) {
-      errores.username = 'El nombre es obligatorio';
-    } else if (usuario.username.length < minUsernameLength) {
-      errores.username = `El nombre de usuario debe tener al menos ${minUsernameLength} caracteres`;
-    }
-    if (!usuario.password) {
-      errores.password = 'La contraseña es obligatoria';
-    } else if (usuario.password.length < minPasswordLength) {
-      errores.password = `La contraseña debe tener al menos ${minPasswordLength} caracteres`;
-    }
-    if (!usuario.email) {
-      errores.email = 'El email es obligatorio';
-    } else if (usuario.email.length < minEmailLength || !/\S+@\S+\.\S+/.test(usuario.email)) { //De esta manera el usuario deberá de poner el "@" si o si
-      errores.email = `El correo es incorrecto`;
-    }
-
-    return errores;
-
-  }
-
-  handleSubmitRegistro(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const usuario = {
-      username: formData.get('username'),
-      password: formData.get('password'),
-      email: formData.get('email'),
-
-    };
-
-    const errores = this.validarUsuario(usuario);
-    if (Object.keys(errores).length === 0){
-      console.log(`Usuario perfectamente registrado: ${usuario}`);
-    } else {
-      console.log("Error en la validación")
-    }
-    
-  }
-
+  
 }
-// export default Optimus;
+

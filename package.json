@@ -14,6 +14,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "firebase": "^10.12.3",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "js-yaml": "^4.1.0"
