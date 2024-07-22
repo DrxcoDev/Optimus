@@ -83,6 +83,7 @@ class Optimus {
       this.bindEvents();
       this.proof();
       this.getZone();
+      this.endedmap();
     } catch (error) {
       this.handleError(error);
     }
@@ -284,6 +285,22 @@ class Optimus {
   }
   */
 
+  endedmap() {
+    try {
+      if (this.state.endedmap) {
+        console.log("Usefully endedmap")
+        if (navigator.geolocation) { //check if geolocation is available
+          navigator.geolocation.getCurrentPosition(function(position){
+            console.log(position);
+          });   
+        }
+      }
+      
+    } catch (error) {
+        this.handleError(error) || console.error("Error in endedmap: ", error);
+      }
+   
+  }
   
 }
 
