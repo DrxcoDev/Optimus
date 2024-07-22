@@ -295,6 +295,10 @@ class Optimus {
           });   
         }
       }
+      if (!this.state.endedmap) {
+        console.log("Not endedmap")
+        // TODO: Implement your code here to handle the case when endedmap is false. For example, you could display a message to the user or trigger a specific action.
+      }
       
     } catch (error) {
         this.handleError(error) || console.error("Error in endedmap: ", error);
