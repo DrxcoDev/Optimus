@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
             '</form>' +
         '</div>' +
 
+        '<div id="prueba"></div>' +
+
       '</div>' 
     );
   }
@@ -45,6 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
       darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
       clickMessage: 'Click Me',           //  Mensaje del boton antes de hacer un evento = 'Click Me'
       endedmap: true,
+      api: true,
+      createTable: true,
+      headers: 2,
+      rows: 3,
+      quant: 2,
+      content: 'prueba',
 
       /**
        * Para la vadilación del usuario, minimo de caracteres.
@@ -76,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * Esta función permite el state:title = "..." 
    */
   window.updateTitle('Optimus está aquí');
+  
 
   
 })

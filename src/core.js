@@ -1,3 +1,5 @@
+const { createServer } = require("http");
+
 class Optimus {
   constructor(options) {
     this.options = options;
@@ -78,6 +80,18 @@ class Optimus {
         this.updateTitle('Optimus');
       } else {
         this.updateTitle(this.state.title);
+      }
+
+      if(this.state.api) {
+        GetProof();
+        if (this.state.port && this.state.route) {
+          console.log(`${port}, ${route}`);
+          createServer(this.state.port, this.state.route)
+        }
+        if (this.state.headers && this.state.rows) {
+           createTable(this.state.headers, this.state.rows, this.state.quant, this.state.content);
+        }
+        
       }
       this.applyTheme();
       this.bindEvents();
