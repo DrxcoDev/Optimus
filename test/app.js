@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       year: currentYear,                  //  Activa esta funcion si quieres que aparezca el año = currentYear
       darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
       clickMessage: 'Click Me',           //  Mensaje del boton antes de hacer un evento = 'Click Me'
+      endedmap: true,
 
       /**
        * Para la vadilación del usuario, minimo de caracteres.
