@@ -1,4 +1,3 @@
-const { createServer } = require("http");
 
 class Optimus {
   constructor(options) {
@@ -84,10 +83,10 @@ class Optimus {
 
       if(this.state.api) {
         GetProof();
-        if (this.state.port && this.state.route) {
-          console.log(`${port}, ${route}`);
-          createServer(this.state.port, this.state.route)
-        }
+        // if (this.state.port && this.state.route) {
+        //   console.log(`${port}, ${route}`);
+        //   createServer(this.state.port, this.state.route)
+        // }
         if (this.state.headers && this.state.rows) {
            createTable(this.state.headers, this.state.rows, this.state.quant, this.state.content);
         }
@@ -97,7 +96,6 @@ class Optimus {
       this.bindEvents();
       this.proof();
       this.getZone();
-      this.endedmap();
     } catch (error) {
       this.handleError(error);
     }
@@ -299,26 +297,15 @@ class Optimus {
   }
   */
 
-  endedmap() {
-    try {
-      if (this.state.endedmap) {
-        console.log("Usefully endedmap")
-        if (navigator.geolocation) { //check if geolocation is available
-          navigator.geolocation.getCurrentPosition(function(position){
-            console.log(position);
-          });   
-        }
-      }
-      if (!this.state.endedmap) {
-        console.log("Not endedmap")
-        // TODO: Implement your code here to handle the case when endedmap is false. For example, you could display a message to the user or trigger a specific action.
-      }
-      
-    } catch (error) {
-        this.handleError(error) || console.error("Error in endedmap: ", error);
-      }
-   
-  }
   
+  
+}
+
+function RenderIS(url, query, title="RenderIS"){
+  const root = document.querySelector(`#${query}`);
+  root.innerHTML = (
+    '<iframe src=' + url + ' title=' + title + '></iframe>'
+  );
+  console.log(`Succes render: ${title}, ${url} in ${query} content.`)
 }
 

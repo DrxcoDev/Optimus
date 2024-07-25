@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Simula un retraso para el ejemplo de carga diferida
     await new Promise(resolve => setTimeout(resolve, 1000));
 
+    
 
     return (
       '<div>' +
@@ -46,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       year: currentYear,                  //  Activa esta funcion si quieres que aparezca el año = currentYear
       darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
       clickMessage: 'Click Me',           //  Mensaje del boton antes de hacer un evento = 'Click Me'
-      endedmap: true,
       api: true,
       createTable: true,
       headers: 2,
