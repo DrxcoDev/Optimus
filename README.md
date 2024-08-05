@@ -188,6 +188,13 @@ Las actuales API's
 
 ```
 
+# Paquetes 
+**Hemos incorporado paquetes creados por el equipo y por la comunidad a Optimus.**
+Para importar los paquetes es muy fácil solamente debes de instalar el `installer.exe`. 
+Una vez descargado lo que debes de hacer es iniciarlo y posteriormente elegir una opción de todas las que hay.
+Automaticamente se instalará una carpeta con los archivos del paquete anteriormente escojido.
+
+
 # Ignora los siguientes apartados
 
 _Ignora los siguientes apartados, algunos están en prueba y no son relevantes_
