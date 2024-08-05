@@ -212,3 +212,5 @@ _Ignora los siguientes apartados, algunos están en prueba y no son relevantes_
 
 ## Nuestra tabla de contribucion:
 ![Alt](https://repobeats.axiom.co/api/embed/0a2b986977a12c59db1e422646f9599605bcd3c8.svg "Repobeats analytics image")
+
+Ley organica de la protección de datos: https://www.boe.es/eli/es/lo/2018/12/05/3/con
