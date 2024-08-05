@@ -1,0 +1,36 @@
+/*
+* Official web: https://animista.net/
+*/
+
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+
+
+.scale-up-top{-webkit-animation:scale-up-top .4s cubic-bezier(.39,.575,.565,1.000) both;animation:scale-up-top .4s cubic-bezier(.39,.575,.565,1.000) both}
+@-webkit-keyframes scale-up-top{0%{-webkit-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:50% 0;transform-origin:50% 0}100%{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 0;transform-origin:50% 0}}@keyframes scale-up-top{0%{-webkit-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:50% 0;transform-origin:50% 0}100%{-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 0;transform-origin:50% 0}}
+
+.scale-down-center{-webkit-animation:scale-down-center .4s cubic-bezier(.25,.46,.45,.94) both;animation:scale-down-center .4s cubic-bezier(.25,.46,.45,.94) both}
+@-webkit-keyframes scale-down-center{0%{-webkit-transform:scale(1);transform:scale(1)}100%{-webkit-transform:scale(.5);transform:scale(.5)}}@keyframes scale-down-center{0%{-webkit-transform:scale(1);transform:scale(1)}100%{-webkit-transform:scale(.5);transform:scale(.5)}}
