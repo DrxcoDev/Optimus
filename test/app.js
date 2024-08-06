@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   async function loadTemplate(state) {
     // Simula un retraso para el ejemplo de carga diferida
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
     return (
       '<div>' +
