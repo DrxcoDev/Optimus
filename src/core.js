@@ -1,4 +1,3 @@
-
 class Optimus {
   constructor(options) {
     this.options = options;
@@ -8,6 +7,7 @@ class Optimus {
     this.hooks = [];
     this.hookIndex = 0;
     this.oldVTree = null;
+    this.lazyComponents = new Map(); // Para manejar los componentes cargados diferidamente
     this.init();
   }
 
@@ -74,7 +74,9 @@ class Optimus {
     try {
       const root = document.querySelector(this.options.el);
       const content = await this.options.template(this.state);
+
       root.innerHTML = content;
+
       if (!this.state.title) {
         this.updateTitle('Optimus');
       } else {
@@ -96,9 +98,26 @@ class Optimus {
       this.bindEvents();
       this.proof();
       this.getZone();
+      
+      // Renderizar componentes cargados diferidamente
+      this.renderLazyComponents();
+      
     } catch (error) {
       this.handleError(error);
     }
+  }
+
+  async renderLazyComponents() {
+    for (const [id, componentPromise] of this.lazyComponents) {
+      const component = await componentPromise;
+      document.querySelector(`#${id}`).innerHTML = component.default();
+    }
+  }
+
+  lazy(importFunc) {
+    const id = `lazy-component-${Date.now()}`;
+    this.lazyComponents.set(id, importFunc());
+    return id;
   }
 
   proof() {
@@ -184,7 +203,6 @@ class Optimus {
     } catch (error) {
       this.handleError(error);
     }
-    
   }
 
   on(eventName, handler) {
@@ -296,16 +314,4 @@ class Optimus {
     }
   }
   */
-
-  
-  
 }
-
-function RenderIS(url, query, title="RenderIS"){
-  const root = document.querySelector(`#${query}`);
-  root.innerHTML = (
-    '<iframe src=' + url + ' title=' + title + '></iframe>'
-  );
-  console.log(`Succes render: ${title}, ${url} in ${query} content.`)
-}
-

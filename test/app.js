@@ -1,14 +1,7 @@
-// import Optimus from "../src/core";
-
 document.addEventListener("DOMContentLoaded", () => {
-  
-
   async function loadTemplate(state) {
-
     // Simula un retraso para el ejemplo de carga diferida
     await new Promise(resolve => setTimeout(resolve, 1000));
-
-    
 
     return (
       '<div>' +
@@ -17,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<p> Fecha en año ' + state.year + '</p>' +
         '<button data-on-click="clickMessage">' + state.clickMessage + '</button>' +
 
-
-        // Validacion de un formulario de forma Optimizada
+        // Validación de un formulario de forma Optimizada
         '<div>' +
             '<form id="registro-form">' +
             '<label for="username">Nombre de usuario:</label><br>' +
@@ -33,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         '<div id="prueba"></div>' +
 
-      '</div>' 
+        // Usar componente cargado diferidamente
+        '<div id="lazy-component"></div>' +
+
+      '</div>'
     );
   }
 
@@ -42,49 +37,50 @@ document.addEventListener("DOMContentLoaded", () => {
   window.app = new Optimus({
     el: '#app',
     state: {
-      message: 'Hola, Mundo optimizado!', //  Mensaje como variable = 'Tu mensaje'
-      title: 'Hello, Optimus',            //  Titulo de la ventana = 'Tu titulo'
-      year: currentYear,                  //  Activa esta funcion si quieres que aparezca el año = currentYear
-      darkMode: true,                     //  Cambia el tema = [true](Tema oscuro) | [false](Tema claro)
-      clickMessage: 'Click Me',           //  Mensaje del boton antes de hacer un evento = 'Click Me'
-      api: true,
-      createTable: true,
-      headers: 2,
-      rows: 3,
-      quant: 2,
+      message: 'Hola, Mundo optimizado!',
+      title: 'Hello, Optimus',
+      year: currentYear,
+      darkMode: true,
+      clickMessage: 'Click Me',
       content: 'prueba',
-
-      /**
-       * Para la vadilación del usuario, minimo de caracteres.
-       */
-
-      minUsernameLength: '3',            // Minimo de digitos en el apartado de "Username" del formulario = ''
-      minPasswordLength: '6',            // Minimo de digitos en el apartado de "Password" del formulario = ''
-      minEmailLength: '5',               // Minimo de digitos en el correo = ''. Ya de por sí esta configurado para que sea obligatorio el @
+      minUsernameLength: '3',
+      minPasswordLength: '6',
+      minEmailLength: '5',
     },
     template: loadTemplate
   });
+
+  // Función para cargar el componente diferido
+  const loadLazyComponent = async () => {
+    try {
+      const { default: LazyComponent } = await import('./LazyComponent.js');
+      const lazyComponentContainer = document.querySelector('#lazy-component');
+
+      if (lazyComponentContainer) {
+        lazyComponentContainer.innerHTML = LazyComponent();
+      } else {
+        console.error('Contenedor #lazy-component no encontrado');
+      }
+    } catch (error) {
+      console.error('Error loading LazyComponent:', error);
+    }
+  };
+
+  // Esperar a que el contenido esté renderizado antes de cargar el componente diferido
+  setTimeout(() => {
+    loadLazyComponent();
+  }, 2000);
+
   // Registrar un evento personalizado
-  app.on('click', message => {
+  window.app.on('click', message => {
     console.log('Click event triggered with message:', message);
   });
 
   // Cambiar el estado para actualizar el contenido
-  /**
-   * Lo que ocurre es que al dar click al boton Cambie el texto del boton
-   * Esta función se a añadido como un evento. 
-   * Tarda 0.2 segundos en contestar, en la mayoria de los casos puede
-   * ser inmediata.
-   */
   setTimeout(() => {
-    app.setState({ clickMessage: 'Updated Message' });
+    window.app.setState({ clickMessage: 'Updated Message' });
   }, 2000);
 
-  /**
-   * Esta función permite el state:title = "..." 
-   */
+  // Actualizar el título de la página
   window.updateTitle('Optimus está aquí');
-  
-
-  
-})
+});
