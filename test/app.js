@@ -65,6 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // const factorial = memoize(function(n) {
+  //   if (n === 0) return 1;
+  //   return n * factorial(n - 1);
+  // });
+  
+  // console.log(factorial(5)); // 120
+  // console.log(factorial(6)); // 720, utiliza el resultado almacenado de factorial(5)
+  
+
   // Esperar a que el contenido esté renderizado antes de cargar el componente diferido
   setTimeout(() => {
     loadLazyComponent();
