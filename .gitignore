@@ -2,3 +2,4 @@
 node_modules/
 publish/
 lab/node_modules/
+src/dist
