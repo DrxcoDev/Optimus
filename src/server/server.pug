@@ -1,0 +1,126 @@
+doctype html
+html(lang="en")
+  head
+    title Documentación del Archivo server.js
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css")
+    style
+      | body {
+      |   font-family: Arial, sans-serif;
+      | }
+      | h1, h2 {
+      |   color: #333;
+      | }
+      | pre {
+      |   background-color: #f8f9fa;
+      |   padding: 10px;
+      |   border-radius: 5px;
+      | }
+      | .code-block {
+      |   background-color: #f8f9fa;
+      |   padding: 15px;
+      |   border-radius: 5px;
+      |   border: 1px solid #ddd;
+      | }
+
+  body
+    .container
+      h1 Documentación del Archivo `server.js`
+      
+      p
+        | Este archivo contiene la implementación de un servidor HTTP básico en Node.js que sirve archivos estáticos desde un directorio especificado en un archivo de configuración YAML. A continuación se presenta una descripción detallada del propósito, parámetros y funcionamiento del archivo `server.js`.
+
+      h2 Propósito
+      p
+        | La función principal del archivo `server.js` es configurar e iniciar un servidor HTTP que sirve archivos estáticos. El servidor está configurado para leer la configuración desde un archivo YAML, incluyendo el puerto en el que debe escuchar y el directorio desde el cual debe servir los archivos. Además, la función verifica si el puerto está disponible antes de iniciar el servidor y maneja las solicitudes de archivos, respondiendo con el contenido adecuado o un mensaje de error en caso de que el archivo no se encuentre.
+
+      h2 Estructura del Archivo
+      pre.code-block
+        | const http = require('http');
+        | const fs = require('fs').promises;
+        | const path = require('path');
+        | const yaml = require('js-yaml');
+        | const colors = require('colors');
+        | const net = require('net');
+        |
+        | async function isPortAvailable(port) {
+        |   return new Promise((resolve) => {
+        |     const server = net.createServer();
+        |     server.once('error', (err) => {
+        |       if (err.code === 'EADDRINUSE') {
+        |         resolve(false); // Puerto en uso
+        |       } else {
+        |         throw err;
+        |       }
+        |     });
+        |     server.once('listening', () => {
+        |       server.close(() => resolve(true)); // Puerto disponible
+        |     });
+        |     server.listen(port);
+        |   });
+        | }
+        |
+        | async function startServer(readfile) {
+        |   try {
+        |     const config = yaml.load(await fs.readFile(readfile, 'utf8'));
+        |     const PORT = config.server.port || 3000;
+        |     const UserDirectory = config.server.render;
+        |     const baseDirectory = path.join(__dirname, UserDirectory);
+        |     const contentTypes = {
+        |       '.html': 'text/html',
+        |       '.js': 'application/javascript',
+        |       '.css': 'text/css',
+        |       '.json': 'application/json',
+        |       '.png': 'image/png',
+        |       '.jpg': 'image/jpeg',
+        |       '.gif': 'image/gif',
+        |       '.svg': 'image/svg+xml'
+        |     };
+        |     const portAvailable = await isPortAvailable(PORT);
+        |     if (!portAvailable) {
+        |       console.error(`[ERROR]`.red, `El puerto ${PORT} ya está en uso.`.red);
+        |       return;
+        |     }
+        |     const requestHandler = async (request, response) => {
+        |       console.log(`Recibida solicitud: ${request.url}`);
+        |       const filePath = path.join(baseDirectory, request.url === '/' ? 'index.html' : request.url);
+        |       try {
+        |         const data = await fs.readFile(filePath);
+        |         const ext = path.extname(filePath).toLowerCase();
+        |         const contentType = contentTypes[ext] || 'application/octet-stream';
+        |         response.writeHead(200, { 'Content-Type': contentType });
+        |         response.end(data);
+        |         console.log('Renderizado con éxito'.green);
+        |       } catch (err) {
+        |         console.error(`Error al leer el archivo: ${err.message}`.red);
+        |         response.writeHead(404, { 'Content-Type': 'text/plain' });
+        |         response.end('404 - Archivo no encontrado');
+        |       }
+        |     };
+        |     const server = http.createServer(requestHandler);
+        |     server.listen(PORT, () => {
+        |       console.log(`OPTIMUS SERVER`.green);
+        |       console.log(`\x1b[4mlocalhost:${PORT}\x1b[0m`.blue);
+        |       console.log('You can change in #config.yml'.yellow);
+        |       console.log(`|_ RENDER -> ${UserDirectory}\n  |_ index.html`.blue);
+        |     });
+        |   } catch (e) {
+        |     console.error(`Error en la configuración: ${e.message}`.red);
+        |   }
+        | }
+
+      h2 Explicación de Funciones
+      h3 isPortAvailable
+      p
+        | La función `isPortAvailable` verifica si un puerto específico está disponible para su uso. Crea un servidor TCP que intenta escuchar en el puerto proporcionado. Si el puerto ya está en uso, la promesa se resuelve con `false`. Si el puerto está disponible, la promesa se resuelve con `true` después de que el servidor se cierre.
+
+      h3 startServer
+      p
+        | La función `startServer` inicia el servidor HTTP. Primero, lee el archivo de configuración YAML y extrae el puerto y el directorio de archivos. Luego, verifica si el puerto está disponible utilizando la función `isPortAvailable`. Si el puerto está libre, configura el manejador de solicitudes para servir archivos estáticos y manejar errores. Finalmente, inicia el servidor HTTP en el puerto especificado.
+
+      h2 Manejo de Errores
+      p
+        | El archivo maneja errores relacionados con la lectura del archivo de configuración, la disponibilidad del puerto y la lectura de archivos estáticos. Los errores se registran en la consola para facilitar la depuración.
+
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js")
