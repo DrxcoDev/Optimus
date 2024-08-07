@@ -1,5 +1,11 @@
+#include <queue>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
 #include <iostream>
+#include <memory>
 #include <limits>
+#include <string>
 
 // Definición de un nodo para el árbol binario de búsqueda
 template <typename T>
@@ -91,7 +97,6 @@ private:
             : value(val), parent(par), g(gCost), h(hCost), f(gCost + hCost) {}
     };
 
-    // Nodo del grafo
     struct Edge {
         Node* destination;
         int cost;
@@ -99,33 +104,29 @@ private:
 
     std::unordered_map<T, std::vector<Edge>> adjacencyList;
 
-    Node* findNodeWithLowestF(std::vector<Node*>& openList) {
-        Node* lowest = nullptr;
-        int lowestF = std::numeric_limits<int>::max();
-        for (Node* node : openList) {
-            if (node->f < lowestF) {
-                lowestF = node->f;
-                lowest = node;
-            }
+    struct CompareNode {
+        bool operator()(const Node* lhs, const Node* rhs) const {
+            return lhs->f > rhs->f;
         }
-        return lowest;
-    }
+    };
 
 public:
     void addEdge(T src, T dest, int cost) {
-        adjacencyList[src].emplace_back(Node(dest), cost);
+        adjacencyList[src].emplace_back(new Node(dest), cost);
     }
 
     std::vector<T> aStarSearch(T start, T goal) {
         std::vector<T> path;
-        std::vector<Node*> openList;
+        std::priority_queue<Node*, std::vector<Node*>, CompareNode> openList;
         std::unordered_map<T, Node*> allNodes;
 
-        openList.push_back(new Node(start));
-        allNodes[start] = openList.back();
+        openList.push(new Node(start));
+        allNodes[start] = openList.top();
 
         while (!openList.empty()) {
-            Node* current = findNodeWithLowestF(openList);
+            Node* current = openList.top();
+            openList.pop();
+
             if (current->value == goal) {
                 while (current != nullptr) {
                     path.push_back(current->value);
@@ -135,13 +136,6 @@ public:
                 return path;
             }
 
-            // Remove current from openList
-            auto it = std::find(openList.begin(), openList.end(), current);
-            if (it != openList.end()) {
-                openList.erase(it);
-            }
-
-            // Explore neighbors
             for (const Edge& edge : adjacencyList[current->value]) {
                 Node* neighbor = nullptr;
                 if (allNodes.find(edge.destination->value) != allNodes.end()) {
@@ -157,9 +151,7 @@ public:
                     neighbor->f = newG + neighbor->h;
                     neighbor->parent = current;
 
-                    if (std::find(openList.begin(), openList.end(), neighbor) == openList.end()) {
-                        openList.push_back(neighbor);
-                    }
+                    openList.push(neighbor);
                 }
             }
         }
