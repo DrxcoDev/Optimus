@@ -21,8 +21,7 @@
 
 Optimus es un framework ligero y optimizado para el desarrollo rápido de aplicaciones web. Está diseñado para mejorar el rendimiento de las aplicaciones al cargar elementos rápidamente y manejar errores de forma efectiva en el lado del cliente. **Sin animo de lucro**
 
-**Optimus** también contiene su propia libreria de css para todos los usuarios. 
-Actualemnete esta en desarrollo y se habilitará como estable el 20 de julio.
+El equipo actualmente esta estabilizando ficheros y creando las configuraciones para que los usuarios al usar Optimus puedan usar el server local. Estará estable para mediados de Septiembre.
 
 **Sitio web**: https://optimusjs.netlify.app/
 
