@@ -194,6 +194,9 @@ Para importar los paquetes es muy fácil solamente debes de instalar el `install
 Una vez descargado lo que debes de hacer es iniciarlo y posteriormente elegir una opción de todas las que hay.
 Automaticamente se instalará una carpeta con los archivos del paquete anteriormente escojido.
 
+# Partners
+**Esta sección aparecen las empresas, comunidades y personas que nos ayudan a que el proyecto poco a poco salga adelante**
+
 
 # Ignora los siguientes apartados
 
