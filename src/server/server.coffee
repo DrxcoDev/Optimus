@@ -4,7 +4,7 @@ yaml = require 'js-yaml'
 
 # Cargar el archivo YAML de configuración
 try
-  config = yaml.safeLoad fs.readFileSync('config.yml', 'utf8')
+  config = yaml.load fs.readFileSync('src/server/config.yml', 'utf8')
   PORT = config.server.port or 3000  # Obtener el puerto del objeto server en el YAML, usando 3000 como valor por defecto
 
   requestHandler = (request, response) ->

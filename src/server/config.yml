@@ -3,11 +3,12 @@
 
 server:
   name: Your server name
-  port: 3000
-  ssl:
-    enabled: true
-    key-store: classpath:keystore.jks
-  script: main.js
+  port: 4000
+  render: your folder
+  #ssl:
+    #enabled: true
+    #key-store: classpath:keystore.jks
+  #script: main.js 
   author: Author of server name
   repository: Your GitHub repository #Example https://github.com/DrxcoDev/Optimus
   
