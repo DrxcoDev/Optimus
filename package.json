@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/core.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node test/server.js",
     "api": "node api/index.js",
     "build": "babel src --out-dir dist"
   },
@@ -21,6 +21,7 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "colors": "^1.4.0",
+    "express": "^4.21.0",
     "firebase": "^10.12.3",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
