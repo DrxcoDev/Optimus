@@ -1,7 +1,7 @@
 # Optimus
 
 <div align="center" style="border-radius:25px;">
-  <img align="center" src="https://github.com/DrxcoDev/Optimus/raw/main/doc/logo.png" alt="Optimus Framework Logo" width="200" height="180">
+  <img align="center" src="https://github.com/DrxcoDev/Optimus/raw/main/doc/logo1.png" alt="Optimus Framework Logo" width="200" height="180">
 </div>
 
 <div align="center">
